@@ -1,0 +1,133 @@
+name: TeamsSimplified
+author: Destinyofyeet
+version: 2.5.4
+main: me.destinyofyeet.TeamsSimplified.main.Main
+website: https://github.com/DestinyofYeet/
+api-version: 1.16
+
+commands:
+  team:
+    description: Lets you create, manage, teams, etc
+    usage: /<command> <option>
+    permission: TeamsSimplified.team.team
+
+  claim:
+    description: Lets you claim a chunk for your team
+    usage: /<command>
+    permission: TeamsSimplified.chunk.claim
+
+  unclaim:
+    description: Lets you unclaim a chunk from your team
+    usage: /<command> [all]
+    permission: TeamsSimplified.chunk.unclaim
+
+  removeclaim:
+    description: Lets you remove a chunk from another team
+    usage: /<command> <teamName>
+    permission: TeamsSimplified.chunk.removeclaim
+
+  toggle:
+    description: Lets you toggle to access the stuff from other teams
+    usage: /<command> <options>
+    permission: TeamsSimplified.chunk.accessanyway
+
+
+permissions:
+  TeamsSimplified.*:
+    description: All TeamsSimplified permissions
+    default: op
+    children:
+      TeamsSimplified.team.create: true
+      TeamsSimplified.team.team: true
+      TeamsSimplified.team.delete.*: false
+      TeamsSimplified.team.modify.*: false
+      TeamsSimplified.team.join.*: false
+      TeamsSimplified.team.leave: true
+      TeamsSimplified.chunk.*: false
+
+  TeamsSimplified.chunk.*:
+    description: All chunk commands
+    default: op
+    children:
+      TeamsSimplified.chunk.accessanyway: false
+      TeamsSimplified.chunk.claim: true
+      TeamsSimplified.chunk.unclaim: true
+      TeamsSimplified.chunk.removeclaim: false
+
+  TeamsSimplified.chunk.accessanyway:
+    description: Lets you do stuff in a claimed chunk as if it would be yours
+    default: op
+
+  TeamsSimplified.chunk.claim:
+    description: Lets you claim a chunk for your team
+    default: true
+
+  TeamsSimplified.chunk.unclaim:
+    description: Lets you unclaim a team chunk
+    default: true
+
+  TeamsSimplified.chunk.removeclaim:
+    description: Lets you delete all team chunks from another team
+    default: op
+
+  TeamsSimplified.team.leave:
+    description: Lets you leave a team
+    default: true
+
+  TeamsSimplified.team.join.*:
+    description: All join permissions
+    default: false
+    children:
+      TeamsSimplified.team.join.join: true
+      TeamsSimplified.team.join.joinanyways: false
+
+  TeamsSimplified.team.join.join:
+    description: Lets you join a team
+    default: true
+
+  TeamsSimplified.team.join.joinanyways:
+    description: Lets you join a team, even if its closed
+    default: op
+
+  TeamsSimplified.team.create:
+    description: Lets you create a team
+    default: true
+
+  TeamsSimplified.team.team:
+    description: Lets you execute the /team command
+    default: true
+
+  TeamsSimplified.team.modify.*:
+    description: All modify commands
+    default: op
+    children:
+      TeamsSimplified.team.modify.own: true
+      TeamsSimplified.team.modify.modify: true
+      TeamsSimplified.team.modify.others: false
+
+  TeamsSimplified.team.modify.own:
+    description: Lets you edit your own team
+    default: true
+
+  TeamsSimplified.team.modify.modify:
+    description: Lets you execute the modify command
+    default: true
+
+  TeamsSimplified.team.modify.other:
+    description: Lets you edit other teams
+    default: op
+
+  TeamsSimplified.team.delete.*:
+    description: All team deletion permissions
+    default: false
+    children:
+      TeamsSimplified.team.delete.own: true
+      TeamsSimplified.team.delete.others: false
+
+  TeamsSimplified.team.delete.own:
+    description: Lets you delete your own team
+    default: true
+
+  TeamsSimplified.team.delete.others:
+    description: Lets you delete teams from other players
+    default: op
